@@ -1,0 +1,28 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="/css/note.css")
+        title note-keeper
+    body 
+        section.container 
+            .form_container 
+                form(action="") 
+                    .input-container 
+                        span
+                            img(src="/icons/search.png", alt="search icon")
+                        input(type="search", placeholder='Search notes')
+                .btns
+                    button.active All 
+                    button Personal 
+                    button Office 
+            each note in notes
+                .notes 
+                    a.demo-note(href='/create-note')
+                        h3 #{note.title}
+                        p #{note.content}
+                            span 06:33AM
+            .add-btn 
+                a(href="/create-note") +
+            

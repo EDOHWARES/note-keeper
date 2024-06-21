@@ -1,0 +1,15 @@
+body {
+    min-height: 100vh;
+    background-color: #120311;
+    font-family: sans-serif;
+}
+
+section.container {
+    max-width: 1000px;
+    margin: auto;
+    background-color: transparent;
+}
+
+.note-field {
+    width: 100%;
+}
