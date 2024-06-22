@@ -21,8 +21,8 @@ html(lang="en")
                 .notes 
                     a.demo-note(href='/create-note')
                         h3 #{note.title}
-                        p #{note.content}
-                            span 06:33AM
+                        p #{note.content.substring(0, 100)}
+                            span #{note.created_at.toString().substring(0, 24)}
             .add-btn 
                 a(href="/create-note") +
             

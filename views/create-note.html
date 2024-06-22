@@ -8,9 +8,13 @@
 </head>
 <body>
     <section class="container">
-        <div></div>
+
         <form action="/add-note" method="POST">
-            <input class="note-field" type="text">
+            <div class="hd">
+                <input type="text" name="title" id="" maxlength="20" placeholder="Add Title">
+                <button type="submit">Done</button>
+            </div>
+            <textarea name="content" id="" cols="30" rows="10" placeholder="Write your notes here..."></textarea>
         </form>
     </section>
 </body>

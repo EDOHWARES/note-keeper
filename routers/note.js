@@ -5,6 +5,7 @@ const router = express.Router();
 const noteController = require('../controllers/note');
 
 router.get('/', noteController.getIndex);
-router.get('/create-note', noteController.getCreateNote)
+router.get('/create-note', noteController.getCreateNote);
+router.post('/add-note', noteController.addNote);
 
 module.exports = router;
