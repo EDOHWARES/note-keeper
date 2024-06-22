@@ -6,7 +6,7 @@ const app = express();
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.set('view engine', 'pug');
-app.set('viewss', 'views');
+app.set('views', 'views');
 
 const noteRoute = require('./routers/note');
 const db = require('./utils/database');
