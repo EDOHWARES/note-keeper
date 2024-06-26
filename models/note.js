@@ -10,13 +10,23 @@ module.exports = class Note {
 
     static fetchAllNotes () {
         return db.execute('SELECT * FROM notes');
+    };
+
+    static findNote (id) {
+        return db.execute(`SELECT * FROM notes WHERE id = ${id}`)
+    };
+
+    static editNote (id, title, content) {
+        return db.execute(`UPDATE notes SET title =?, content=? WHERE id=?`,
+            [title, content, id]
+        )
     }
 
     save () {
         return db.execute('INSERT INTO notes (title, content) VALUES (?, ?) ',
             [this.title, this.content]
         )
-    }
+    };
 
 
 }

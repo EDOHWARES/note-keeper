@@ -1,0 +1,23 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="/css/create-note.css")
+        link(rel="shortcut icon", href="/icons/pencil.png", type="image/x-icon")
+        title create note 
+    body 
+        section.container 
+            form(action=creating ? "/add-note" : `/edit-note/${note.id}`, method='POST') 
+                .hd 
+                    if creating
+                        input(type="text", name="title", placeholder='Add Title...')
+                        button(type="submit") Done 
+                    else 
+                        input(type="text", name="title", maxlength="20", value=`${note.title}`)
+                        button(type="submit") Update
+                if creating
+                    textarea(name="content", cols="30", rows="10", placeholder="Write your notes here...")
+                else 
+                    textarea(name="content", cols="30", rows="10") #{note.content}
+

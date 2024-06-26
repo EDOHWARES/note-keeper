@@ -37,6 +37,10 @@ body {
     color: #949292;
 }
 
+.container form textarea::placeholder {
+    color: #949292;
+}
+
 .container .hd {
     width: 100%;
     display: flex;

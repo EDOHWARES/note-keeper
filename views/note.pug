@@ -20,7 +20,7 @@ html(lang="en")
                     button Office 
             each note in notes
                 .notes 
-                    a.demo-note(href='/create-note')
+                    a.demo-note(href=`/view-note/${note.id}`)
                         h3 #{note.title}
                         p #{note.content.substring(0, 100)}
                             span #{note.created_at.toString().substring(0, 24)}

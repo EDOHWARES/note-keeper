@@ -15,7 +15,35 @@ exports.getIndex = async (req, res, next) => {
 };
 
 exports.getCreateNote = (req, res, next) => {
-    res.sendFile(path.join(__dirname, '../', 'views', 'create-note.html'))
+    // res.sendFile(path.join(__dirname, '../', 'views', 'create-note.html'))
+    res.render('create-note', {
+        creating: true
+    });
+}
+
+exports.getViewNote = (req, res, next) => {
+    const noteId = req.params.noteId;
+    Note
+        .findNote(noteId)
+        .then(([note, fields]) => {
+            res.render('create-note', {
+                creating: false,
+                note: note[0]
+            });
+        }) 
+        .catch(err => console.log(err));
+}
+
+exports.postEditNotes = (req, res, next) => {
+    const noteId = req.params.noteId;
+    const updatedTitle = req.body.title;
+    const updatedContent = req.body.content;
+    Note
+        .editNote(noteId, updatedTitle, updatedContent)
+        .then((result) => {
+            res.redirect('/');
+        })
+        .catch(err => console.log(err));
 }
 
 exports.addNote = async (req, res, next) => {
