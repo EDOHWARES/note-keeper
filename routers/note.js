@@ -9,5 +9,6 @@ router.get('/create-note', noteController.getCreateNote);
 router.get('/view-note/:noteId', noteController.getViewNote);
 router.post('/add-note', noteController.addNote);
 router.post('/edit-note/:noteId', noteController.postEditNotes);
+router.post('/delete-note/:noteId', noteController.postDeleteNote);
 
 module.exports = router;

@@ -22,6 +22,11 @@ module.exports = class Note {
         )
     }
 
+    static delete (id) {
+        return db.execute(`DELETE FROM notes WHERE id=?`, 
+        [id])
+    }
+
     save () {
         return db.execute('INSERT INTO notes (title, content) VALUES (?, ?) ',
             [this.title, this.content]

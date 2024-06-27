@@ -5,6 +5,7 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         link(rel="stylesheet", href="/css/note.css")
         link(rel="shortcut icon", href="/icons/pencil.png", type="image/x-icon")
+        script(src="/script.js", defer) 
         title note-keeper
     body 
         section.container 
@@ -20,10 +21,21 @@ html(lang="en")
                     button Office 
             each note in notes
                 .notes 
-                    a.demo-note(href=`/view-note/${note.id}`)
+                    div.demo-note
                         h3 #{note.title}
                         p #{note.content.substring(0, 100)}
                             span #{note.created_at.toString().substring(0, 24)}
+                        a.edit-el-cont(href=`/view-note/${note.id}`) 
+                            img.edit-el(src='/icons/edit.png', alt='edit-note')
+                        img.delete-el(src="/icons/delete.png", alt="more-options", id='delete-el', data-id=`${note.id}`)
+
+            .modal 
+                .modal-content 
+                    span.close &times;
+                    p Are you sure you want to delete this note?
+                    button(id='confirmDelete', data-id='') Yes 
+                    button(id='cancelDelete') No
+
             .add-btn 
                 a(href="/create-note") +
             

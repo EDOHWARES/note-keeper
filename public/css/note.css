@@ -85,6 +85,7 @@ section.container .form_container .btns button:hover {
 }
 
 section.container .notes .demo-note {
+    position: relative;
     background-color: #302030;
     height: 80px;
     border-radius: 8px;
@@ -95,10 +96,6 @@ section.container .notes .demo-note {
     gap: 1rem;
     cursor: pointer;
     transition: all .3s ease-in;
-}
-
-section.container .notes .demo-note:hover {
-    background-color: #271d27;
 }
 
 section.container .notes {
@@ -137,6 +134,87 @@ section.container .notes .demo-note p {
     justify-content: center;
     cursor: pointer;
 }
+
+.edit-el-cont {
+    position: absolute;
+    top: 1rem;
+    right: 3rem;
+    cursor: pointer;
+    width: 1rem;
+    height: 1rem;
+}
+
+.edit-el-cont img {
+    width: 100%;
+    height: 100%;
+}
+
+.delete-el {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+    z-index: 99999;
+    width: 1rem;
+    height: 1rem;
+}
+
+
+
+/* CSS MODAL */
+/* styles.css */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content button {
+    margin-top: 2rem;
+    margin-right: 1rem;
+    padding: .5rem 1rem;
+    border: 1px solid gray;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.modal-content button#confirmDelete {
+    background-color: rgb(248, 44, 44);
+    color: white;
+    border-color: white;
+}
+
+
 
 @media (max-width: 720px) {
     section.container {

@@ -58,3 +58,13 @@ exports.addNote = async (req, res, next) => {
             .catch(err => console.log(err));
 
 }
+
+exports.postDeleteNote = (req, res, next) => {
+    const noteId = req.params.noteId;
+    Note
+        .delete(noteId)
+        .then(result => {
+            res.redirect('/');
+        })
+        .catch(err => console.log(err));
+}
