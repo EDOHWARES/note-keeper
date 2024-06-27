@@ -57,12 +57,12 @@ section.container .form_container input {
     align-items: center;
 }
 
-section.container .form_container .btns {
+section.container .form_container .category-btns {
     display: flex;
     gap: 2rem;
 }
 
-section.container .form_container .btns button {
+section.container .form_container .category-btns button {
     height: 30px;
     padding: 1rem 2rem;
     display: flex;
@@ -77,8 +77,8 @@ section.container .form_container .btns button {
     transition: all .4s ease-in;
 }
 
-section.container .form_container .btns button.active,
-section.container .form_container .btns button:hover {
+section.container .form_container .category-btns button.active,
+section.container .form_container .category-btns button:hover {
     background-color: #524848;
     color: #D9D9D9;
     border: 1px solid transparent;

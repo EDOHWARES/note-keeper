@@ -1,3 +1,21 @@
+//Handling Category Buttons
+const buttons = document.querySelectorAll('.category-btns button');
+console.log(buttons)
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        buttons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+    });
+});
+
+
+
+
+
+
+
+
+// Handling Modal
 let noteId;
 
 const modal = document.querySelector('.modal');
