@@ -19,8 +19,8 @@ html(lang="en")
                     button.active All 
                     button Personal 
                     button Office 
-            each note in notes
-                .notes 
+            .notes 
+                each note in notes
                     div.demo-note
                         h3 #{note.title}
                         p #{note.content.substring(0, 100)}

@@ -47,9 +47,8 @@ exports.postEditNotes = (req, res, next) => {
 }
 
 exports.addNote = async (req, res, next) => {
-        const title = req.body.title;
-        const content = req.body.content;
-        const note = new Note(null, title, content, null);
+        const {title, content, category} = req.body;
+        const note = new Note(null, title, content, category, null);
         note
             .save()
             .then(() => {

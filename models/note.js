@@ -1,10 +1,11 @@
 const db = require('../utils/database');
 
 module.exports = class Note {
-    constructor(id, title, content, created_at) {
+    constructor(id, title, content, category, created_at) {
         this.id = id;
         this.title = title;
         this.content = content;
+        this.category = category;
         this.created_at = created_at;
     }
 
@@ -16,9 +17,9 @@ module.exports = class Note {
         return db.execute(`SELECT * FROM notes WHERE id = ${id}`)
     };
 
-    static editNote (id, title, content) {
-        return db.execute(`UPDATE notes SET title =?, content=? WHERE id=?`,
-            [title, content, id]
+    static editNote (id, title, content, category) {
+        return db.execute(`UPDATE notes SET title =?, content=?, category=? WHERE id=?`,
+            [title, content, category, id]
         )
     }
 
@@ -28,8 +29,8 @@ module.exports = class Note {
     }
 
     save () {
-        return db.execute('INSERT INTO notes (title, content) VALUES (?, ?) ',
-            [this.title, this.content]
+        return db.execute('INSERT INTO notes (title, content, category) VALUES (?, ?, ?) ',
+            [this.title, this.content, this.category]
         )
     };
 

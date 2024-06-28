@@ -5,8 +5,6 @@
 }
 
 body {
-    width: 100vw;
-    min-height: 100vh;
     background-color: #120311;
     font-family: sans-serif;
 }
@@ -99,9 +97,11 @@ section.container .notes .demo-note {
 }
 
 section.container .notes {
+    height: 70vh;
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    overflow-y: scroll;
 }
 
 section.container .notes .demo-note h3 {

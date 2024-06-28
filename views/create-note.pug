@@ -16,6 +16,14 @@ html(lang="en")
                     else 
                         input(type="text", name="title", maxlength="20", value=`${note.title}`)
                         button(type="submit") Update
+                .category 
+                    select(name="category") 
+                        if creating
+                            option(value="personal") Personal 
+                            option(value="others") Office/Others
+                        else 
+                            option(value="personal", selected=(note.category === 'personal')) Personal 
+                            option(value="others" selected=`${note.category === 'others'}`)  Office/Others
                 if creating
                     textarea(name="content", cols="30", rows="10", placeholder="Write your notes here...")
                 else 
