@@ -16,9 +16,14 @@ html(lang="en")
                             img(src="/icons/search.png", alt="search icon")
                         input(type="search", placeholder='Search notes')
                 .category-btns
-                    button.active All 
-                    button Personal 
-                    button Office 
+                    form(action="/", method='GET')  
+                        button(type='submit', class=category===undefined ? 'active' : '') All 
+                    form(action="/", method='GET') 
+                        input(type="hidden", name="category", value='personal')
+                        button(type='submit', class=category==='personal' ? 'active' : '') Personal  
+                    form(action="/", method='GET') 
+                        input(type="hidden", name="category", value='others')
+                        button(type="submit", class=category==='others' ? 'active' : '') Others
             .notes 
                 each note in notes
                     div.demo-note

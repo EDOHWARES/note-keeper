@@ -9,6 +9,12 @@ module.exports = class Note {
         this.created_at = created_at;
     }
 
+    static fetchNoteByCategory (category) {
+        return db.execute('SELECT * FROM notes WHERE category=?', 
+            [category]
+        )
+    };
+
     static fetchAllNotes () {
         return db.execute('SELECT * FROM notes');
     };

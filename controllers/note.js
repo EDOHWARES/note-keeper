@@ -3,15 +3,32 @@ const path = require('path');
 const db = require('../utils/database');
 
 exports.getIndex = async (req, res, next) => {
+    const category = req.query.category;
+    console.log(category)
+    if (category == undefined) {
         Note
             .fetchAllNotes()
             .then((arr) => {
                 const [notes, fields] = arr;
                 res.render('note', {
-                    notes: notes
+                    notes: notes,
+                    category: category
                 })
             })
             .catch(err => console.log(err));
+    } else {
+        Note
+            .fetchNoteByCategory(category)
+            .then((arr) => {
+                const [notes, fields] = arr;
+                res.render('note', {
+                    notes: notes,
+                    category: category
+                })
+            })
+            .catch(err => console.log(err));
+    }
+
 };
 
 exports.getCreateNote = (req, res, next) => {
@@ -19,6 +36,33 @@ exports.getCreateNote = (req, res, next) => {
     res.render('create-note', {
         creating: true
     });
+}
+
+exports.getPersonals = (req, res, next) => {
+    const category = req.query.category;
+    console.log(category)
+    Note
+        .fetchNoteByCategory(category)
+        .then((arr) => {
+            const [notes, fields] = arr;
+            res.render('note', {
+                notes: notes
+            })
+        })
+        .catch(err => console.log(err));
+};
+
+exports.getOthers = (req, res, next) => {
+    const category = req.query.category;
+    Note
+        .fetchNoteByCategory(category)
+        .then((arr) => {
+            const [notes, fields] = arr;
+            res.render('note', {
+                notes: notes
+            })
+        })
+        .catch(err => console.log(err));
 }
 
 exports.getViewNote = (req, res, next) => {
