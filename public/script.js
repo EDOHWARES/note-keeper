@@ -28,3 +28,20 @@ document.querySelector('.modal #cancelDelete').addEventListener('click', () => {
 document.querySelector('.modal .close').addEventListener('click', () => {
     modal.style.display='none';
 })
+
+
+// Search Input
+
+const searchEl = document.getElementById('search-input');
+const notesContainer = document.querySelector('.notes');
+
+if (searchEl) {
+    searchEl.addEventListener('input', async () => {
+        const query = searchEl.value.trim();
+        try {
+            await fetch(`/?search=${query}`);
+        } catch (error) {
+            console.error('Error Searching notes', error);
+        }
+    })
+}

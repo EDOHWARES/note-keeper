@@ -34,6 +34,10 @@ module.exports = class Note {
         [id])
     }
 
+    static searchNotes (query) {
+        return db.execute(`SELECT * FROM notes WHERE title LIKE '%${query}%'`)
+    }
+
     save () {
         return db.execute('INSERT INTO notes (title, content, category) VALUES (?, ?, ?) ',
             [this.title, this.content, this.category]

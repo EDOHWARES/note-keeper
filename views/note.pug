@@ -9,12 +9,12 @@ html(lang="en")
         title note-keeper
     body 
         section.container 
-            .form_container 
-                form(action="") 
+            .search_container 
+                div 
                     .input-container 
                         span
                             img(src="/icons/search.png", alt="search icon")
-                        input(type="search", placeholder='Search notes')
+                        input#search-input(type="search", placeholder='Search notes', o)
                 .category-btns
                     form(action="/", method='GET')  
                         button(type='submit', class=category===undefined ? 'active' : '') All 
@@ -24,15 +24,17 @@ html(lang="en")
                     form(action="/", method='GET') 
                         input(type="hidden", name="category", value='others')
                         button(type="submit", class=category==='others' ? 'active' : '') Others
-            .notes 
-                each note in notes
-                    div.demo-note
-                        h3 #{note.title}
-                        p #{note.content.substring(0, 100)}
-                            span #{note.created_at.toString().substring(0, 24)}
-                        a.edit-el-cont(href=`/view-note/${note.id}`) 
-                            img.edit-el(src='/icons/edit.png', alt='edit-note')
-                        img.delete-el(src="/icons/delete.png", alt="more-options", id='delete-el', data-id=`${note.id}`)
+            if category=='searched'
+                h2 How are u
+                .notes 
+                    each note in notes
+                        div.demo-note
+                            h3 #{note.title}
+                            p #{note.content.substring(0, 100)}
+                                span #{note.created_at.toString().substring(0, 24)}
+                            a.edit-el-cont(href=`/view-note/${note.id}`) 
+                                img.edit-el(src='/icons/edit.png', alt='edit-note')
+                            img.delete-el(src="/icons/delete.png", alt="more-options", id='delete-el', data-id=`${note.id}`)
 
             .modal 
                 .modal-content 

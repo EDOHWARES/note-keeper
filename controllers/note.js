@@ -1,37 +1,50 @@
 const Note = require('../models/note');
-const path = require('path');
-const db = require('../utils/database');
 
 exports.getIndex = async (req, res, next) => {
+    const searchQuery = req.query.search;
     const category = req.query.category;
-    console.log(category)
-    if (category == undefined) {
+
+    if (searchQuery) {
         Note
-            .fetchAllNotes()
+            .searchNotes(searchQuery)
             .then((arr) => {
-                const [notes, fields] = arr;
+                const [notes] = arr;
                 res.render('note', {
                     notes: notes,
-                    category: category
+                    category: 'searched'
                 })
+                console.log(notes)
             })
             .catch(err => console.log(err));
     } else {
-        Note
-            .fetchNoteByCategory(category)
-            .then((arr) => {
-                const [notes, fields] = arr;
-                res.render('note', {
-                    notes: notes,
-                    category: category
+        if (category == undefined) {
+            Note
+                .fetchAllNotes()
+                .then((arr) => {
+                    const [notes] = arr;
+                    res.render('note', {
+                        notes: notes,
+                        category: category
+                    })
                 })
-            })
-            .catch(err => console.log(err));
+                .catch(err => console.log(err));
+        } else {
+            Note
+                .fetchNoteByCategory(category)
+                .then((arr) => {
+                    const [notes] = arr;
+                    res.render('note', {
+                        notes: notes,
+                        category: category
+                    })
+                })
+                .catch(err => console.log(err));
+        }
     }
 
 };
 
-exports.getCreateNote = (req, res, next) => {
+exports.getCreateNote = (_req, res) => {
     // res.sendFile(path.join(__dirname, '../', 'views', 'create-note.html'))
     res.render('create-note', {
         creating: true
