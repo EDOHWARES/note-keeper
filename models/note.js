@@ -27,16 +27,16 @@ module.exports = class Note {
         return db.execute(`UPDATE notes SET title =?, content=?, category=? WHERE id=?`,
             [title, content, category, id]
         )
-    }
+    };
 
     static delete (id) {
         return db.execute(`DELETE FROM notes WHERE id=?`, 
         [id])
-    }
+    };
 
     static searchNotes (query) {
         return db.execute(`SELECT * FROM notes WHERE title LIKE '%${query}%'`)
-    }
+    };
 
     save () {
         return db.execute('INSERT INTO notes (title, content, category) VALUES (?, ?, ?) ',

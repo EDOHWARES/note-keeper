@@ -1,6 +1,6 @@
 const Note = require('../models/note');
 
-exports.getIndex = async (req, res, next) => {
+exports.getIndex = async (req, res) => {
     const searchQuery = req.query.search;
     const category = req.query.category;
 
@@ -9,11 +9,7 @@ exports.getIndex = async (req, res, next) => {
             .searchNotes(searchQuery)
             .then((arr) => {
                 const [notes] = arr;
-                res.render('note', {
-                    notes: notes,
-                    category: 'searched'
-                })
-                console.log(notes)
+                res.json(notes);
             })
             .catch(err => console.log(err));
     } else {

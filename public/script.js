@@ -35,13 +35,42 @@ document.querySelector('.modal .close').addEventListener('click', () => {
 const searchEl = document.getElementById('search-input');
 const notesContainer = document.querySelector('.notes');
 
+const displayNotes = async (notes) => {
+    notesContainer.innerHTML = '';
+    notes.forEach(note => {
+        const noteElement = document.createElement('div');
+        noteElement.classList.add('demo-note');
+        noteElement.innerHTML = `
+            <h3>${note.title}</h3>
+            <p>
+                ${note.content.substring(0, 100)}
+                <span>${note.created_at.toString().substring(0, 24)}</span>
+            </p>
+            <a class='edit-el-cont' href='/view-note/${note.id}'>
+                <img class='edit-el' src='/icons/edit.png' alt='edit-note' />
+            </a>
+            <img class='delete-el' src='/icons/delete.png' alt='more-options' id='delete-el' data-id='${note.id}' />
+        `;
+        notesContainer.appendChild(noteElement);
+    });
+};
+
 if (searchEl) {
     searchEl.addEventListener('input', async () => {
         const query = searchEl.value.trim();
         try {
-            await fetch(`/?search=${query}`);
+            const response = await fetch(`/?search=${encodeURIComponent(query)}`);
+
+            if (!response.ok) {
+                throw new Error(`Http Error Status: ${response.status}`);
+            };
+
+            const notes = await response.json();
+            displayNotes(notes)
         } catch (error) {
             console.error('Error Searching notes', error);
         }
-    })
+    });
+
+    
 }
